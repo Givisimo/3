@@ -7,18 +7,22 @@ const isLoginValid = function(login) {
 };
 
 const isLoginUnique = function(allLogins, login) {
-   return allLogins.includes(login);
+   return !allLogins.includes(login);
 };
 
 const addLogin = function(allLogins, login) {
-if (!isLoginValid(login)) {
-    console.log('Ошибка! Логин должен быть от 4 до 16 символов');
-  } else if (isLoginUnique(allLogins, login)) {
-  console.log('Такой логин уже используется!');
- } else {
+  const resultValidation = isLoginValid(login);
+  if(resultValidation === false) {
+    return console.log('Ошибка! Логин должен быть от 4 до 16 символов');
+  }
+  const resultUnique = isLoginUnique(allLogins, login);
+  if (resultUnique === false) {
+     return console.log('Такой логин уже используется!');
+  }
+  if (resultUnique === true) {
       logins.push(login);
-    console.log('Логин успешно добавлен!');
- }
+      return console.log('Логин успешно добавлен!');
+  }
 };
 //
 //
